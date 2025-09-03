@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recruiting Without Limits</title>
+    <title>Inventure</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <nav>
       <div class="container">
-        <div class="logo">RWL</div>
+        <div class="logo">Inventure</div>
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -18,14 +18,22 @@
       </div>
     </nav>
 
-    <header id="home">
-      <h1>Recruiting Without Limits</h1>
-      <h2>Speed and Scale</h2>
+    <header id="home" class="entrance-animate">
+      <div class="header-content">
+        <h1 class="slide-up">Recruiting Without Limits</h1>
+        <h2 class="slide-up delay-2">Speed and Scale</h2>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-line line-1"></div>
+        <div class="scroll-line line-2"></div>
+        <div class="scroll-line line-3"></div>
+        <div class="scroll-line line-4"></div>
+      </div>
     </header>
 
-    <main>
+    <main class="entrance-animate">
       <section id="about" class="content">
-        <p>
+        <p class="scroll-trigger fade-left">
           We're building a new model for recruitment. One that combines revenue
           sharing, a marketing engine, a competitive broker community, and an
           AI-driven learning platform. This is recruitment rewritten for the
@@ -34,20 +42,93 @@
       </section>
 
       <section id="future" class="ai-features">
-        <h3>Future AI Integration</h3>
-        <div class="feature-cards">
-          <div class="card">
-            <h4>AI Matching</h4>
-            <p>Smart candidate-job matching</p>
+        <h3 class="scroll-trigger">Future AI Integration</h3>
+        <div class="feature-cards stagger-children">
+          <div class="card" data-tilt>
+            <div class="card-content">
+              <div class="icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2" />
+                  <path d="M8 12h8" />
+                  <path d="M12 16v-4" />
+                </svg>
+              </div>
+              <h4>AI Matching</h4>
+              <p>Smart candidate-job matching powered by advanced algorithms</p>
+              <div class="card-stats">
+                <div class="stat">
+                  <span class="value">95%</span>
+                  <span class="label">Accuracy</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <h4>Community Hub</h4>
-            <p>Connected recruiter network</p>
+          <div class="card" data-tilt>
+            <div class="card-content">
+              <div class="icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h4>Community Hub</h4>
+              <p>Connected recruiter network with real-time collaboration</p>
+              <div class="card-stats">
+                <div class="stat">
+                  <span class="value">10k+</span>
+                  <span class="label">Members</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card" data-tilt>
+            <div class="card-content">
+              <div class="icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="2" />
+                  <path d="M7 14.5L12 9l5 5.5" />
+                  <path d="M7 19l5-5 5 5" />
+                </svg>
+              </div>
+              <h4>Analytics Dashboard</h4>
+              <p>Real-time insights and predictive hiring metrics</p>
+              <div class="card-stats">
+                <div class="stat">
+                  <span class="value">24/7</span>
+                  <span class="label">Monitoring</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

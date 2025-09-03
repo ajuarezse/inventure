@@ -1,7 +1,102 @@
 :root {
   --primary-color: #2a2a2a;
   --accent-color: #007aff;
+  --gradient-1: #007aff;
+  --gradient-2: #00c6ff;
+  --gradient-3: #0066cc;
+  --gradient-4: #0052cc;
   --background: #ffffff;
+}
+
+/* Entrance Animations */
+.entrance-animate {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.8s ease forwards;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Animation Classes */
+.scroll-trigger {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.scroll-trigger.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-trigger.fade-left {
+  transform: translateX(-50px);
+}
+
+.scroll-trigger.fade-right {
+  transform: translateX(50px);
+}
+
+.scroll-trigger.fade-left.active,
+.scroll-trigger.fade-right.active {
+  transform: translateX(0);
+}
+
+.scroll-trigger.scale-up {
+  transform: scale(0.95);
+}
+
+.scroll-trigger.scale-up.active {
+  transform: scale(1);
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.stagger-children.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.active > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.stagger-children.active > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.stagger-children.active > *:nth-child(3) {
+  transition-delay: 0.3s;
 }
 
 * {
@@ -69,18 +164,154 @@ header {
   align-items: center;
   text-align: center;
   padding: 0 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.header-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeScale 1s ease forwards;
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  animation: fadeIn 1s ease forwards 1s;
+  opacity: 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.scroll-line {
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 6px;
+  opacity: 0.9;
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.3);
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.line-1 {
+  width: 160px;
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+.line-2 {
+  width: 120px;
+  animation: scrollLine 2s ease-in-out infinite 0.15s;
+}
+
+.line-3 {
+  width: 80px;
+  animation: scrollLine 2s ease-in-out infinite 0.3s;
+}
+
+.line-4 {
+  width: 40px;
+  animation: scrollLine 2s ease-in-out infinite 0.45s;
+}
+
+@keyframes scrollLine {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.5);
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+.scroll-indicator:hover .scroll-line {
+  opacity: 1;
+  box-shadow: 0 0 25px rgba(0, 122, 255, 0.6);
+}
+
+/* Add dynamic background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 30%,
+      var(--gradient-2) 0%,
+      transparent 40%
+    ),
+    radial-gradient(circle at 80% 70%, var(--gradient-1) 0%, transparent 40%);
+  z-index: -1;
+  opacity: 0.15;
+}
+
+/* Add floating particles */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='3' fill='rgba(0,122,255,0.2)'/%3E%3C/svg%3E")
+    repeat;
+  animation: float 20s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-100%) rotate(360deg);
+  }
+}
 h1 {
   font-size: 3.5rem;
   margin-bottom: 20px;
   font-weight: 700;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+  position: relative;
 }
 
 h2 {
   font-size: 2rem;
-  color: var(--accent-color);
+  color: var(--primary-color);
   font-weight: 500;
+  opacity: 0.9;
+  position: relative;
 }
 
 .content {
@@ -111,14 +342,67 @@ h2 {
 }
 
 .card {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   flex: 1;
   max-width: 300px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card .icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.5rem;
+  transform: translateZ(30px);
+  transition: transform 0.3s ease;
+}
+
+.card .icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent-color);
+  stroke-width: 1.5;
+  transition: all 0.3s ease;
+}
+
+.card:hover .icon svg {
+  transform: scale(1.1);
+  stroke: var(--gradient-2);
+}
+
+.card-content {
+  transform: translateZ(30px);
+}
+
+.card-stats {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  transform: translateZ(30px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat .value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.stat .label {
+  font-size: 0.875rem;
+  color: #666;
 }
 
 .card:hover {
@@ -129,6 +413,51 @@ h2 {
   color: var(--accent-color);
   margin-bottom: 1rem;
   font-size: 1.25rem;
+}
+
+.footer {
+  padding: 40px 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5;
+}
+
+.social-link:hover {
+  color: var(--accent-color);
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
