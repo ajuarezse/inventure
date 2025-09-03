@@ -1,5 +1,5 @@
 // Initialize the intersection observer after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Ensure all elements are visible even before JavaScript loads
   document
     .querySelectorAll(".scroll-trigger, .stagger-children")
