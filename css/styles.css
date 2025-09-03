@@ -56,6 +56,15 @@
   transform: translateY(0);
 }
 
+/* Fallback for browsers with JavaScript disabled or issues */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-trigger {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .scroll-trigger.fade-left {
   transform: translateX(-50px);
 }
